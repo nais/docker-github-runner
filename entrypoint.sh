@@ -13,7 +13,7 @@ RUNNER_TOKEN=$(echo $payload | jq .token --raw-output)
     --replace
 
 remove() {
-    /opt/runner/config.sh remove --unattended --token "$TOKEN"
+    /opt/runner/config.sh remove --unattended --token "${RUNNER_TOKEN}"
 }
 
 trap 'remove; exit 130' INT
