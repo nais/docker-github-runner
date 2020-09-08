@@ -53,7 +53,7 @@ COPY update-platform-apps.sh /opt/update-platform-apps.sh
 COPY slack-send-status.sh /opt/slack-send-status.sh
 
 USER runner
-WORKDIR /home/runner
+WORKDIR /opt/runner
 
 RUN /usr/bin/helm repo add stable https://kubernetes-charts.storage.googleapis.com/ && \
     /usr/bin/helm repo add nais https://nais.io/charts/ && \
