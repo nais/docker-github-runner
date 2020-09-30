@@ -22,6 +22,7 @@ RUN apt-get update \
         jq \
         sudo \
         locales \
+        iputils-ping \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
