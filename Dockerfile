@@ -50,6 +50,7 @@ RUN curl -Ls https://github.com/actions/runner/releases/download/v${GITHUB_RUNNE
     /opt/runner/bin/installdependencies.sh
 
 COPY entrypoint.sh /opt/entrypoint.sh
+COPY unregister-runner.sh /opt/unregister-runner.sh
 COPY update-platform-apps.sh /opt/update-platform-apps.sh
 COPY slack-send-status.sh /opt/slack-send-status.sh
 

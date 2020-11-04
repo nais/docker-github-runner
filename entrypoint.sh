@@ -14,13 +14,8 @@ fi
     --unattended \
     --replace
 
-remove() {
-    /opt/runner/config.sh remove --unattended --token "${RUNNER_TOKEN}"
-}
-
-trap 'remove; exit 130' INT
-trap 'remove; exit 143' TERM
-
-/opt/runner/run.sh "$*" &
-
-wait $!
+while true; do
+    /opt/runner/run.sh
+    echo Runner exit: Restarting in 1m...
+    sleep 60
+done
