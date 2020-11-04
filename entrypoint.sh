@@ -12,6 +12,7 @@ while true; do
         --unattended \
         --replace
     /opt/runner/run.sh
+    /opt/runner/config.sh remove --unattended --token "${RUNNER_TOKEN}"
     echo Restarting in 1m...
     sleep 60
 done
