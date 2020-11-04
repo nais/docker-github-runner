@@ -16,6 +16,8 @@ fi
 
 while true; do
     /opt/runner/run.sh
-    echo Runner exit: Restarting in 1m...
+    echo Runner exit: unregistering
+    /opt/unregister-runner.sh
+    echo Restarting in 1m...
     sleep 60
 done
