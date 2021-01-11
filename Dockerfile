@@ -55,9 +55,4 @@ COPY unregister-runner.sh /opt/unregister-runner.sh
 USER runner
 WORKDIR /opt/runner
 
-RUN /usr/bin/helm repo add stable https://kubernetes-charts.storage.googleapis.com/ && \
-    /usr/bin/helm repo add nais https://nais.io/charts/ && \
-    /usr/bin/helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com && \
-    /usr/bin/helm repo add snyk-charts https://snyk.github.io/kubernetes-monitor/
-
 ENTRYPOINT ["/opt/entrypoint.sh"]
