@@ -4,9 +4,8 @@ ARG GITHUB_RUNNER_VERSION="2.273.5"
 ARG HELM_VERSION="v3.3.0"
 ARG KUBECTL_VERSION="1.18.6"
 ARG YQ_VERSION="3.3.2"
-ARG NAIS_BUILDER_IMAGES_COMMIT="b04ba01efaaf42b38e3abcc0237630c3cc42819e"
 
-ENV GITHUB_REPO "navikt/nais-platform-apps"
+ENV GITHUB_REPO ""
 ENV GITHUB_PAT ""
 ENV RUNNER_TOKEN ""
 ENV NAIS_CLUSTER_NAME ""
@@ -38,12 +37,6 @@ RUN curl -Ls https://storage.googleapis.com/kubernetes-release/release/v${KUBECT
 
 RUN curl -Ls https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq
-
-RUN curl -Ls https://raw.githubusercontent.com/nais/builder_images/${NAIS_BUILDER_IMAGES_COMMIT}/naiscaper/naiscaper -o /usr/bin/naiscaper && \
-    chmod +x /usr/bin/naiscaper
-
-RUN curl -Ls https://raw.githubusercontent.com/nais/builder_images/${NAIS_BUILDER_IMAGES_COMMIT}/bashscaper/bashscaper -o /usr/bin/bashscaper && \
-    chmod +x /usr/bin/bashscaper
 
 RUN curl -Ls https://github.com/actions/runner/releases/download/v${GITHUB_RUNNER_VERSION}/actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz | \
     sudo -u runner tar -xz -C /opt/runner --no-same-owner && \
