@@ -1,6 +1,6 @@
-# docker-platform-apps-runner
+# docker-github-runner
 
-Github actions runner for nais-platform-apps
+Docker image with Github actions runner
 
 ## Build and release image on GPR
 
