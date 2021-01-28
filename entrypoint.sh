@@ -4,7 +4,7 @@ payload=$(curl -sX POST -H "Authorization: token ${GITHUB_PAT}" https://api.gith
 RUNNER_TOKEN=$(echo $payload | jq .token --raw-output)
 /opt/runner/config.sh \
     --name ${HOSTNAME} \
-    --labels platform-apps-runner,${NAIS_CLUSTER_NAME} \
+    --labels ${RUNNER_LABELS} \
     --token ${RUNNER_TOKEN} \
     --url https://github.com/${GITHUB_REPO} \
     --work $HOME/_work \
