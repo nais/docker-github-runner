@@ -2,6 +2,9 @@
 
 Docker image with Github actions runner
 
+:warning: **Don't use this on public repos** :warning:  
+[Self-hosted runner security with public repositories](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners#self-hosted-runner-security-with-public-repositories)
+
 ## Envvars needed to run
 `GITHUB_PAT=<token to authenticate with to register the runner>`
 
