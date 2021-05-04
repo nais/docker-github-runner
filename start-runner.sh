@@ -10,4 +10,4 @@ RUNNER_TOKEN=$(echo $payload | jq .token --raw-output)
     --work $HOME/_work \
     --unattended \
     --replace
-/opt/runner/bin/runsvc.sh
+exec /opt/runner/bin/runsvc.sh
