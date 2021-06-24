@@ -1,3 +1,8 @@
+FROM docker.io/curlimages/curl:latest as linkerd
+ARG LINKERD_AWAIT_VERSION=v0.2.3
+RUN curl -sSLo /tmp/linkerd-await https://github.com/linkerd/linkerd-await/releases/download/release%2F${LINKERD_AWAIT_VERSION}/linkerd-await-${LINKERD_AWAIT_VERSION}-amd64 && \
+    chmod 755 /tmp/linkerd-await
+
 FROM debian:buster-slim
 
 ARG GITHUB_RUNNER_VERSION="2.278.0"
@@ -9,6 +14,7 @@ ENV GITHUB_REPO ""
 ENV GITHUB_PAT ""
 ENV RUNNER_TOKEN ""
 ENV RUNNER_LABELS "docker-github-runner"
+ENV LINKERD_AWAIT_DISABLED "set LINKERD_AWAIT_DISABLED empty if running with Linkerd-proxy"
 
 USER root
 
@@ -25,6 +31,8 @@ RUN apt-get update \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales \
     && useradd -m -d /opt/runner runner
+
+COPY --from=linkerd /tmp/linkerd-await /linkerd-await
 
 RUN curl -Ls https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | \
     tar -xz -C /tmp && \
@@ -46,4 +54,5 @@ COPY unregister-runner.sh /opt/unregister-runner.sh
 USER runner
 WORKDIR /opt/runner
 
-ENTRYPOINT ["/opt/start-runner.sh"]
+ENTRYPOINT ["/linkerd-await", "--"]
+CMD ["/opt/start-runner.sh"]
