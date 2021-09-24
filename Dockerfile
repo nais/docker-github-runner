@@ -1,14 +1,14 @@
 FROM docker.io/curlimages/curl:latest as linkerd
-ARG LINKERD_AWAIT_VERSION=v0.2.3
+ARG LINKERD_AWAIT_VERSION=v0.2.4
 RUN curl -sSLo /tmp/linkerd-await https://github.com/linkerd/linkerd-await/releases/download/release%2F${LINKERD_AWAIT_VERSION}/linkerd-await-${LINKERD_AWAIT_VERSION}-amd64 && \
     chmod 755 /tmp/linkerd-await
 
 FROM debian:buster-slim
 
-ARG GITHUB_RUNNER_VERSION="2.278.0"
-ARG HELM_VERSION="v3.6.1"
+ARG GITHUB_RUNNER_VERSION="2.283.1"
+ARG HELM_VERSION="v3.7.0"
 ARG KUBECTL_VERSION="1.18.19"
-ARG YQ_VERSION="v4.9.6"
+ARG YQ_VERSION="v4.13.2"
 
 ENV GITHUB_REPO ""
 ENV GITHUB_PAT ""
