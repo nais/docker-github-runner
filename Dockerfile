@@ -6,8 +6,8 @@ RUN curl -sSLo /tmp/linkerd-await https://github.com/linkerd/linkerd-await/relea
 FROM debian:buster-slim
 
 ARG GITHUB_RUNNER_VERSION="2.283.1"
-ARG HELM_VERSION="v3.7.0"
-ARG KUBECTL_VERSION="1.18.19"
+ARG HELM_VERSION="v3.9.4"
+ARG KUBECTL_VERSION="1.23.12"
 ARG YQ_VERSION="v4.13.2"
 
 ENV GITHUB_REPO ""
